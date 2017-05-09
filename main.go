@@ -21,8 +21,6 @@ func main() {
 	answer := r1.Intn(MAX+1) + MIN
 	guess := -1
 
-	min := MIN
-	max := MAX
 	scanner := bufio.NewScanner(os.Stdin)
 
 	// Main game loop
@@ -31,7 +29,7 @@ func main() {
 		for {
 			isCorrect := false
 
-			fmt.Print("Input a number between ", min, " and ", max, ": ")
+			fmt.Print("Input a number between ", MIN, " and ", MAX, ": ")
 			for scanner.Scan() {
 				input := scanner.Text()
 
@@ -39,7 +37,7 @@ func main() {
 				num := int(n)
 				if err != nil {
 					fmt.Fprintf(os.Stderr, "Invalid number: %s\n", input)
-				} else if num < min || num > max {
+				} else if num < MIN || num > MAX {
 					fmt.Fprintf(os.Stderr, "Number out of range: %d\n", num)
 				} else {
 					guess = num
@@ -56,10 +54,8 @@ func main() {
 
 		// Check our guess is correct
 		if guess > answer {
-			max = guess
 			fmt.Println("Too large")
 		} else if guess < answer {
-			min = guess
 			fmt.Println("Too small")
 		} else {
 			fmt.Println("You guess right")
